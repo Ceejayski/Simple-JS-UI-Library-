@@ -1,4 +1,5 @@
-const library = [];
+const library = [],
+    addBookBtn = document.querySelector('.btn-d-none');
 class Book {
     constructor(title, author, genre, page, read) {
         this.title = title;
@@ -63,6 +64,10 @@ class UI {
 
         form.insertBefore(div, container);
 
+        setTimeout(() => {
+            document.querySelector('.notification').remove();
+        }, 5000);
+
     }
 
     deleteBook(target) {
@@ -110,6 +115,7 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
         author = document.getElementById('author').value,
         genre = document.getElementById('genre').value,
         page = document.getElementById('pages').value,
+        form = document.getElementById('book-form'),
         read = document.getElementById('read').checked;
 
 
@@ -130,13 +136,22 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
         ui.clearFields();
 
     }
+
+    form.style.display = 'none';
+    addBookBtn.style.display = 'block';
     e.preventDefault();
 });
 
 document.querySelector('.container').addEventListener('click', function (e) {
-    const ui = new UI();
+    const ui = new UI(),
+        form = document.getElementById('book-form');
     console.log(e)
     ui.deleteBook(e.target);
     ui.readBook(e.target);
-    console.log(e.target)
+    console.log(e.target.classList);
+
+    if (e.target.classList.contains('btn-d-none')) {
+        form.style.display = 'block';
+        addBookBtn.style.display = 'none';
+    }
 });

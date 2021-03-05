@@ -10,3 +10,7 @@
 .submit {
     width: 100%;
 }
+
+.btn-d-none {
+    display: none;
+}
