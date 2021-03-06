@@ -110,62 +110,8 @@ class UI {
     }
 }
 
-class Store {
-    static getBooks() {
-        let books;
-        if (localStorage.getItem('books') === null) {
-            books = [];
-        } else {
-            books = JSON.parse(localStorage.getItem('books'));
-        }
 
-        return books;
-    }
-
-    static displayBooks() {
-        const books = Store.getBooks();
-        const ui = new UI();
-        ui.addBookToList(books);
-    }
-
-    static addBook(book) {
-        const books = Store.getBooks();
-
-        books.push(book);
-
-        localStorage.setItem('books', JSON.stringify(books));
-    }
-
-    static removebook(target) {
-        const books = Store.getBooks();
-
-        if (target.classList.contains('remove')) {
-            books.splice(target.parentElement.id, 1);
-        }
-
-        localStorage.setItem('books', JSON.stringify(books));
-    }
-
-    static readBookStore(target) {
-        const books = Store.getBooks();
-
-        let book;
-
-        if (target.id === "read-link") {
-            book = books[target.parentElement.id];
-            if (book.read === true) {
-                book.read = false
-            }
-            else {
-                book.read = true
-            }
-        }
-
-
-        localStorage.setItem('books', JSON.stringify(books));
-    }
-}
-document.addEventListener('DOMContentLoaded', Store.displayBooks);
+// document.addEventListener('DOMContentLoaded', Store.displayBooks);
 document.getElementById('book-form').addEventListener('submit', (e) => {
     const title = document.getElementById('title').value,
         author = document.getElementById('author').value,
@@ -187,7 +133,7 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
         ui.addBookToList(library);
 
         // add to ls
-        Store.addBook(book);
+        // Store.addBook(book);
         // Show success
         ui.showAlert('is-success', 'Book added');
         // Clear fields
@@ -207,8 +153,8 @@ document.querySelector('.container').addEventListener('click', function (e) {
     ui.deleteBook(e.target);
     ui.readBook(e.target);
 
-    Store.removebook(e.target);
-    Store.readBookStore(e.target);
+    // Store.removebook(e.target);
+    // Store.readBookStore(e.target);
     console.log(e.target.classList);
 
     if (e.target.classList.contains('btn-d-none')) {
