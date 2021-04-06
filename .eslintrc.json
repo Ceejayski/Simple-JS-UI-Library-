@@ -4,7 +4,6 @@
     "es6": true,
     "jest": true
   },
-  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
@@ -14,8 +13,7 @@
     "no-shadow": "off",
     "no-param-reassign": "off",
     "eol-last": "off",
-    "no-alert": "off",
-    "max-classes-per-file": "off"
+    "arrow-parens": "off"
   },
   "ignorePatterns": [
     "dist/",
